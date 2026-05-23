@@ -4,7 +4,12 @@ from urllib.request import urlopen
 from Bio import Entrez
 from dotenv import load_dotenv
 
-load_dotenv() 
+load_dotenv()
+
+project_dir = os.path.dirname(__file__)
+data_path = os.path.join(project_dir, "output", "results.csv")
+
+print("__ Fetch Started __")
 
 # Telling Entrez who i am
 Entrez.api_key = os.getenv("ENTREZ_API_KEY")
@@ -29,14 +34,16 @@ for id in records_ids:
     # obtain the abstarct still using the id
     abstract_stream = Entrez.efetch(db="pubmed", id=id, rettype="abstract", retmode="text")
     abstract_content = abstract_stream.read()
+    abstract_content = abstract_content.replace("\n", " ")
     abstract_stream.close()
     
     info = [id, paper_title, abstract_content]
     info_to_append.append(info)
-    # print(info)
-    
-    # print(f"| ID : {id} | Title : {paper_title} | Abstarct : {abstract_content} ")
-    
-print(info_to_append)
     
     
+file = open(data_path, "a", newline="", encoding="utf-8")
+writer = csv.writer(file)
+writer.writerows(info_to_append)
+file.close()
+
+print("__ Fetch Successful __")
