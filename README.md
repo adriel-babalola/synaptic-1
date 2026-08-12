@@ -1,5 +1,41 @@
 # synaptic-1
 
+This is for the developement of synaptic-1 a resaerch triaging, repurposing and validation tool, with the purpose to cut down time spent on reaserch and simulation of drugs.
+
+**Intrctuions**
+
+# clone the repo 
+git clone https://github.com/adriel-babalola/synaptic-1.git
+
+# Move into a stage directory 
+cd to a particular stage 
+cd stage-1 
+cd file-handiling
+
+# 2. Create the virtual environment (if not already done)
+python3 -m venv venv
+
+# 3. Activate the environment
+<!-- For Linux -->
+source venv/bin/activate
+
+or ./venv/bin/activate
+
+# 4. Install all dependencies
+pip install -r requirements.txt
+
+
+
+
+
+
+
+
+
+
+
+
+
 ### Day 1 : 
 I explored pymed and querying PubMed to get papers
 
